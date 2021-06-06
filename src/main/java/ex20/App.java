@@ -39,6 +39,42 @@ Implement the program using data structures to avoid nested if statements.
 
 public class App {
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
 
+        // prompts
+        System.out.print("What is the order amount? ");
+        String orderAmount = in.nextLine();
+        System.out.print("What state do you live in? ");
+        String state = in.nextLine();
+
+        // converting orderAmount to float
+        float order = Float.parseFloat(orderAmount);
+
+        // if statements for Wisconsin residents
+        if (state.equals("Wisconsin")) {
+            System.out.print("What county do you live in? ");
+            String county = in.nextLine();
+            // county residents
+            if (county.equals("Eau Claire")) {
+                float tax = (float) (.055*order);
+                order = tax+order;
+                System.out.printf("The tax is $%.2f\n", tax);
+            }
+            if (county.equals("Dunn")) {
+                float tax = (float) (.054*order);
+                order = tax+order;
+                System.out.printf("The tax is $%.2f\n", tax);
+            }
+        }
+
+        // if statement for Illinois residents
+        if (state.equals("Illinois")) {
+            float tax = (float) (.08*order);
+            order = tax+order;
+            System.out.printf("The tax is $%.2f\n", tax);
+        }
+
+        // output
+        System.out.printf("The total is $%.2f\n", order);
     }
 }
